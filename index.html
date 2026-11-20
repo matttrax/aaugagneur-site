@@ -49,7 +49,7 @@ footer p{margin-top:40px;color:#a9a9a2;font-size:14px}footer .credits{margin-top
 @media(max-width:800px){.hero .row,.about,.item{grid-template-columns:1fr}.item span{justify-self:start;text-align:left}.cta{justify-self:start}nav b{display:none}nav div{width:100%;justify-content:space-between;gap:10px}h1{font-size:17vw}}
 .sec{padding:90px var(--m) 20px}.sec.last{padding-bottom:130px}
 .hrow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(300px,1fr);gap:0;overflow-x:auto;scroll-snap-type:x mandatory;padding:16px 0 26px;margin:-16px 0 -16px}
-.card{scroll-snap-align:start;display:flex;padding:0 9px}
+.card{scroll-snap-align:start;display:flex;padding:0 9px;-webkit-tap-highlight-color:transparent}.touch .card:not(.on){pointer-events:none}
 .ci{flex:1;display:flex;flex-direction:column;position:relative;isolation:isolate;background:var(--soft);color:var(--ink);transition:transform .6s cubic-bezier(.22,1,.36,1),color .4s ease}
 .ci::before{content:"";position:absolute;inset:0;background:var(--ink);opacity:0;transition:opacity .4s ease;z-index:-1}
 .ci::after{content:"";position:absolute;inset:0;box-shadow:0 12px 24px rgba(0,0,0,.22);opacity:0;transition:opacity .5s ease;z-index:-2;pointer-events:none}
@@ -58,12 +58,12 @@ footer p{margin-top:40px;color:#a9a9a2;font-size:14px}footer .credits{margin-top
 .card.on .ci::before,.card.on .ci::after{opacity:1}
 .card.on .img img{transform:scale(1.12)}
 .card.on small{color:#7ee0b5}.card.on span{color:#b9b9b2}
-@media(any-hover:hover){
+@media(any-hover:hover) and (any-pointer:fine){
 .card:hover .ci{color:var(--bg);transform:translateY(-10px)}
 .card:hover .ci::before,.card:hover .ci::after{opacity:1}
 .card:hover .img img{transform:scale(1.12)}
 .card:hover small{color:#7ee0b5}.card:hover span{color:#b9b9b2}}
-@media(min-width:900px) and (any-hover:hover){
+@media(min-width:900px) and (any-hover:hover) and (any-pointer:fine){
 .hrow{overflow:visible}.sec{overflow-x:clip}.ci::after{box-shadow:0 28px 56px rgba(0,0,0,.28)}
 .ci{will-change:transform}
 .card:hover .ci{transform:translateY(-8px) scale(1.14);z-index:2}
@@ -112,8 +112,8 @@ footer p{margin-top:40px;color:#a9a9a2;font-size:14px}footer .credits{margin-top
 <p>© 2026 Arthur Augagneur</p></footer>
 <script>
 // Touch screens: highlight the card sitting at the centre of the screen instead of the last tapped one.
-(()=>{const mq=matchMedia('(any-hover:hover)'),cards=[...document.querySelectorAll('.card')];let t=0;
-function upd(){t=0;if(mq.matches){cards.forEach(c=>c.classList.remove('on'));return}
+(()=>{const mq=matchMedia('(any-hover:hover) and (any-pointer:fine)'),cards=[...document.querySelectorAll('.card')];let t=0;
+function upd(){t=0;document.documentElement.classList.toggle('touch',!mq.matches);if(mq.matches){cards.forEach(c=>c.classList.remove('on'));return}
 const cx=innerWidth/2,cy=innerHeight/2;let best=null,bd=1e9;
 cards.forEach(c=>{const r=c.getBoundingClientRect();if(r.top<=cy&&r.bottom>=cy&&r.right>0&&r.left<innerWidth){const d=Math.abs(r.left+r.width/2-cx);if(d<bd){bd=d;best=c}}});
 cards.forEach(c=>c.classList.toggle('on',c===best))}
