@@ -100,9 +100,20 @@ html:not(.touch) .hrow:has(>.card:nth-child(3)) .card:hover .ci{transform:transl
 .first .band{font-size:clamp(20px,2.7vw,52px);padding:clamp(18px,1.9vw,40px) var(--m)}}
 .cvs{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}.cvs .cta{font-size:15px;padding:12px 24px}.cvs .cta.o{background:transparent;color:var(--acc);box-shadow:inset 0 0 0 2px var(--acc)}.cvs .cta.o:hover{background:var(--acc);color:#fff}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* hero réseau */
+.first{position:relative;overflow:hidden;background:#08110e;color:#f1faf5}
+#net{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}
+.first nav,.first .hero,.first .band{position:relative;z-index:1}
+.first .hero{pointer-events:none}.first .hero a,.first nav a{pointer-events:auto}
+.first nav{color:#f1faf5}.first nav a:hover{color:#7ee0b5}
+.first h1{color:#f1faf5;text-shadow:0 0 50px #08110e,0 0 18px #08110e}
+.first .hero p{color:#f1faf5;text-shadow:0 0 22px #08110e}.first .hero .side{color:#a9cdbd}
+.first h1 span{display:block;width:fit-content;background:rgba(8,17,14,.7);padding:.03em .16em .09em;margin-left:-.16em;border-radius:8px}.first h1 span+span{margin-top:.06em}
+.first .hero p{width:fit-content;background:rgba(8,17,14,.7);padding:8px 14px;margin-left:-14px;border-radius:8px}
+.first .cta{background:#7ee0b5;color:#04100b}.first .cta:hover{background:#fff}
 </style></head><body>
-<div class="first"><nav><b>Arthur Augagneur</b><div><a href="#apropos">À propos</a><a href="#projets">Projets</a><a href="#parcours">Parcours</a><a href="#contact">Contact</a></div></nav>
-<header class="hero"><h1>Arthur<br>Augagneur</h1>
+<div class="first"><canvas id="net" aria-hidden="true"></canvas><nav><b>Arthur Augagneur</b><div><a href="#apropos">À propos</a><a href="#projets">Projets</a><a href="#parcours">Parcours</a><a href="#contact">Contact</a></div></nav>
+<header class="hero"><h1><span>Arthur</span><span>Augagneur</span></h1>
 <div class="row"><p>Comprendre les menaces d'aujourd'hui pour mieux anticiper celles de demain.</p><p class="side">Étudiant ingénieur à l'EPITA, Lyon. Python, C, Linux et cybersécurité.</p><a class="cta" href="#projets">Découvrir mes projets</a></div></header>
 <div class="band" aria-label="Compétences"><span>Python</span><span>·</span><span>C</span><span>·</span><span>Linux</span><span>·</span><span>Réseaux</span><span>·</span><span>Cybersécurité</span></div>
 </div>
@@ -129,5 +140,44 @@ cards.forEach(c=>c.classList.toggle('on',c===best))}
 const q=()=>{if(!t)t=requestAnimationFrame(upd)};
 addEventListener('scroll',q,{passive:true});addEventListener('resize',q);mq.addEventListener('change',q);
 document.querySelectorAll('.hrow').forEach(r=>r.addEventListener('scroll',q,{passive:true}));upd()})();
+</script>
+<script>
+// Hero : réseau de compétences interactif (canvas). Les 5 nœuds brillants mènent aux sections du site.
+(()=>{const box=document.querySelector('.first'),c=document.getElementById('net'),x=c.getContext('2d');
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const SK=[['python','#projets'],['c','#projets'],['linux','#projets'],['réseaux','#projets'],['cybersécurité','#apropos']];
+const EX=['quantique','embarqué','crypto','pentest','TCP/IP','SSH'];
+let W,H,k,dpr,N=[],mx=-9999,my=-9999,hov=null,run=true,last=0;
+const R=Math.random;
+function init(){const r=c.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);k=r.width/(c.offsetWidth||r.width);
+W=c.width=Math.round(r.width*dpr);H=c.height=Math.round(r.height*dpr);
+const css=r.width*r.height/(k*k),n=Math.max(26,Math.min(78,Math.round(css/15000)));N=[];
+const u=dpr*k;
+const nar=r.width/k<700;
+SK.forEach(([l,t])=>N.push({x:W*(nar?.1+.8*R():.5+.4*R()),y:H*(nar?.13+.22*R():.22+.6*R()),l,t,s:1}));
+EX.forEach(l=>N.push({x:W*(.08+.84*R()),y:H*(nar?.11+.26*R():.2+.65*R()),l,s:0}));
+while(N.length<n)N.push({x:R()*W,y:R()*H});
+N.forEach(a=>{a.vx=(R()-.5)*.3*u;a.vy=(R()-.5)*.3*u})}
+function pos(e){const r=c.getBoundingClientRect();mx=(e.clientX-r.left)/r.width*W;my=(e.clientY-r.top)/r.height*H}
+box.addEventListener('pointermove',pos);box.addEventListener('pointerleave',()=>{mx=my=-9999});
+box.addEventListener('pointerdown',pos);
+box.addEventListener('click',e=>{if(e.target.closest('a,button'))return;pos(e);const n=hit();if(n&&n.t){document.querySelector(n.t).scrollIntoView({behavior:reduce?'auto':'smooth'})}});
+function hit(){const u=dpr*k;let b=null,bd=26*u;for(const a of N)if(a.s){const d=Math.hypot(a.x-mx,a.y-my);if(d<bd){bd=d;b=a}}return b}
+function frame(t){if(!run)return;requestAnimationFrame(frame);const u=dpr*k,L=165*u,dt=Math.min((t-last)||16,50)/16;last=t;
+x.clearRect(0,0,W,H);
+if(!reduce){for(const a of N){a.x+=a.vx*dt;a.y+=a.vy*dt;if(a.x<0||a.x>W)a.vx*=-1;if(a.y<0||a.y>H)a.vy*=-1;
+ const dm=Math.hypot(a.x-mx,a.y-my);if(dm<L*1.2&&dm>1){a.x+=(mx-a.x)/dm*.25*u*dt;a.y+=(my-a.y)/dm*.25*u*dt}}}
+hov=hit();c.dataset.hover=hov?hov.l:'';box.style.cursor=hov?'pointer':'';
+const E=[];
+for(let i=0;i<N.length;i++){const a=N[i];for(let j=i+1;j<N.length;j++){const b=N[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<L){const al=(a.s||b.s?.5:.32)*(1-d/L);x.strokeStyle=`rgba(126,224,181,${al})`;x.lineWidth=u;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke();E.push([a,b])}}
+ const dm=Math.hypot(a.x-mx,a.y-my);if(dm<L*1.3){x.strokeStyle=`rgba(255,255,255,${.5*(1-dm/(L*1.3))})`;x.lineWidth=u;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(mx,my);x.stroke()}}
+for(const a of N){const h=a===hov;x.fillStyle=a.s?'#7ee0b5':a.l?'#3fae86':'#2f9f78';x.beginPath();x.arc(a.x,a.y,(a.s?(h?7:4.6):a.l?3.2:2.2)*u,0,7);x.fill();
+ if(a.s){x.strokeStyle=`rgba(126,224,181,${h?.9:.35})`;x.lineWidth=u;x.beginPath();x.arc(a.x,a.y,(h?13:9)*u,0,7);x.stroke()}
+ if(a.l){x.fillStyle=a.s?(h?'#fff':'rgba(228,250,240,.95)'):'rgba(168,205,189,.65)';x.font=`${a.s?14:12}px "Courier New",monospace`.replace(/\d+/,m=>m*u);const tw=x.measureText(a.l).width,lx=a.x+11*u+tw>W-8*u?a.x-11*u-tw:a.x+11*u;x.fillText(a.l,lx,a.y-8*u)}}}
+const io=new IntersectionObserver(e=>{const v=e[0].isIntersecting;if(v&&!run){run=true;requestAnimationFrame(frame)}else if(!v)run=false});io.observe(box);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)run=false;else if(!run){run=true;requestAnimationFrame(frame)}});
+addEventListener('resize',init);init();requestAnimationFrame(frame);
+if(reduce){run=true}
+})();
 </script>
 </body></html>
