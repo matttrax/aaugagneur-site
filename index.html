@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arthur Augagneur · Étudiant ingénieur à l'EPITA</title>
+<meta name="description" content="Arthur Augagneur, étudiant ingénieur en informatique à l'EPITA (Lyon). Python, C, Linux, cybersécurité. Projets et parcours.">
+<link rel="canonical" href="https://aaugagneur.fr/">
+<meta property="og:title" content="Arthur Augagneur · Étudiant ingénieur à l'EPITA">
+<meta property="og:description" content="Python, C, Linux, cybersécurité. Projets et parcours.">
+<meta property="og:image" content="https://aaugagneur.fr/assets/arthur.jpg">
+<style>
+:root{--bg:#fbfbf9;--ink:#161616;--dim:#66665f;--acc:#0b6e4f;--soft:#eef3ef;--m:clamp(18px,3.5vw,48px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:19px/1.6 "Source Serif 4",Georgia,serif}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.ui,nav,.cta,.item span,footer p{font-family:"Inter",system-ui,sans-serif}
+nav{display:flex;justify-content:space-between;padding:26px var(--m);font-weight:600;font-size:16px;line-height:1}
+nav div{display:flex;gap:30px}nav a:hover{color:var(--acc)}
+.hero{padding:4vh var(--m) 9vh}
+h1{font-size:clamp(56px,14.5vw,230px);line-height:.84;font-weight:500;letter-spacing:-.055em}
+.hero .row{display:grid;grid-template-columns:1.2fr 1fr auto;gap:var(--m);align-items:end;margin-top:48px}
+.hero p{font-size:24px;line-height:1.35;max-width:30ch}
+.first{min-height:100vh;min-height:100svh;display:flex;flex-direction:column}.first .hero{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:6vh}.hero .row p:first-child{max-width:44ch}.hero .side{color:var(--dim);font-size:19px;max-width:34ch}
+.cta{background:var(--acc);color:#fff;padding:15px 30px;border-radius:99px;font-weight:600;font-size:16px;white-space:nowrap;transition:background .2s}
+.cta:hover{background:var(--ink)}
+.band{background:var(--acc);color:#fff;padding:26px var(--m);font-size:clamp(24px,3.4vw,46px);letter-spacing:-.02em;display:flex;gap:10px 30px;flex-wrap:wrap}
+h2{font-size:clamp(34px,4.5vw,60px);font-weight:500;letter-spacing:-.03em;margin-bottom:28px;line-height:1.1}
+.about{display:grid;grid-template-columns:1fr 1.4fr;gap:var(--m);padding:110px var(--m);background:var(--soft);align-items:center}
+.portrait{aspect-ratio:4/5;max-width:400px;width:100%;background:var(--soft);border-radius:300px 300px 16px 16px;overflow:hidden}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;mix-blend-mode:multiply}
+.about p{font-size:24px;line-height:1.5;max-width:36ch}.about p+p{margin-top:18px}
+.langs{margin-top:28px;display:flex;gap:10px 24px;flex-wrap:wrap;font-family:"Inter",system-ui,sans-serif;font-size:16px;color:var(--dim)}
+.langs b{color:var(--acc)}
+.list{padding:110px var(--m) 60px}
+.item{display:grid;grid-template-columns:2.2fr 3fr 1fr;gap:var(--m);align-items:baseline;padding:34px 0;transition:background .2s,color .2s,padding .2s}
+.item+.item{margin-top:8px}
+.item:hover{background:var(--ink);color:var(--bg);padding-inline:22px}
+.item h3{font-size:clamp(30px,4.6vw,64px);font-weight:500;letter-spacing:-.04em;line-height:1}
+.item p{max-width:46ch;font-size:18px}
+.item span{justify-self:end;font-weight:600;font-size:15px;color:var(--acc);text-align:right}
+.item:hover span{color:#7ee0b5}
+.path{padding:60px var(--m) 60px}.exp{padding-bottom:130px}
+.path .item h3{font-size:clamp(26px,3.4vw,44px)}
+footer{background:var(--ink);color:var(--bg);padding:90px var(--m) 36px}
+footer h2{font-size:clamp(48px,12vw,190px);letter-spacing:-.055em;line-height:.88;margin:0}
+footer .links{margin-top:34px;display:flex;gap:14px 30px;flex-wrap:wrap;font-family:"Inter",system-ui,sans-serif;font-weight:600}
+footer .links a{border-bottom:2px solid var(--acc);padding-bottom:2px}footer .links a:hover{color:#7ee0b5}
+footer p{margin-top:40px;color:#a9a9a2;font-size:14px}footer .credits{margin-top:34px;max-width:110ch;line-height:1.5}footer .credits a{text-decoration:underline}
+@media(max-width:800px){.hero .row,.about,.item{grid-template-columns:1fr}.item span{justify-self:start;text-align:left}.cta{justify-self:start}nav b{display:none}nav div{width:100%;justify-content:space-between;gap:10px}h1{font-size:17vw}}
+.sec{padding:90px var(--m) 20px}.sec.last{padding-bottom:130px}
+.hrow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(300px,1fr);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}
+.card{scroll-snap-align:start;background:var(--soft);display:flex;flex-direction:column;transition:transform .2s,background .2s,color .2s}
+.card:hover{transform:translateY(-5px)}
+.card .img{height:clamp(170px,17vw,250px);display:grid;place-items:center;background:var(--acc);color:#fff}
+.card .img{position:relative;overflow:hidden;flex:none}.card .img.logo{background:#fff}.card .img.logo img{inset:22px;width:calc(100% - 44px);height:calc(100% - 44px)}.card .img img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.card.c2 .img{background:var(--ink);color:#7ee0b5}.card.c3 .img{background:#d9e7de;color:var(--acc)}
+.card .body{padding:24px 26px 28px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card small{font:600 14px "Inter",system-ui,sans-serif;color:var(--acc)}
+.card h3{font-size:clamp(26px,2.6vw,38px);font-weight:500;letter-spacing:-.03em;line-height:1.08}
+.card p{font-size:17px;line-height:1.5}
+.card span{margin-top:auto;padding-top:12px;font:600 14px "Inter",system-ui,sans-serif;color:var(--dim)}
+@media(max-width:800px){.hrow{grid-auto-columns:84%}.card .img{height:190px}}
+@media(min-width:900px){html{zoom:.8}.first{min-height:125vh;min-height:125svh}}
+.cvs{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}.cvs .cta{font-size:15px;padding:12px 24px}.cvs .cta.o{background:transparent;color:var(--acc);box-shadow:inset 0 0 0 2px var(--acc)}.cvs .cta.o:hover{background:var(--acc);color:#fff}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style></head><body>
+<div class="first"><nav><b>Arthur Augagneur</b><div><a href="#apropos">À propos</a><a href="#projets">Projets</a><a href="#parcours">Parcours</a><a href="#contact">Contact</a></div></nav>
+<header class="hero"><h1>Arthur<br>Augagneur</h1>
+<div class="row"><p>Comprendre les menaces d'aujourd'hui pour mieux anticiper celles de demain.</p><p class="side">Étudiant ingénieur à l'EPITA, Lyon. Python, C, Linux et cybersécurité.</p><a class="cta" href="#projets">Découvrir mes projets</a></div></header>
+<div class="band" aria-label="Compétences"><span>Python</span><span>·</span><span>C</span><span>·</span><span>Linux</span><span>·</span><span>Réseaux</span><span>·</span><span>Cybersécurité</span></div>
+</div>
+<section class="about" id="apropos"><div class="portrait"><img src="assets/arthur.jpg" width="900" height="1125" alt="Portrait d'Arthur Augagneur"></div>
+<div><h2>À propos</h2>
+<p>Étudiant en cycle préparatoire intégré à l'EPITA, curieux et rigoureux. Passionné par le développement et la cybersécurité, j'ai testé mes compétences lors de hackathons comme Passe Ton Hack.</p>
+<p>Je me destine à l'intelligence artificielle, à la cybersécurité ou aux systèmes embarqués et à la robotique. Neuf ans de scoutisme m'ont appris l'esprit d'équipe.</p>
+<div class="langs"><span><b>Français</b> langue maternelle</span><span><b>Anglais</b> C1</span><span><b>Espagnol</b> B1</span></div>
+<div class="cvs"><a class="cta" href="cv/Arthur-Augagneur-CV-FR.pdf" download>Télécharger mon CV</a><a class="cta o" href="cv/Arthur-Augagneur-CV-EN.pdf" download>Download my CV (English)</a></div></div></section>
+<section class="sec" id="projets"><h2>Projets</h2><div class="hrow" tabindex="0" role="region" aria-label="Projets"><article class="card c2"><div class="img" style="background:#252c32"><img src="assets/dual-redemption.jpg" alt="Logo du jeu Dual Redemption" loading="lazy" style="object-fit:contain"></div><div class="body"><small>Projet d'équipe</small><h3>Dual Redemption</h3><p>Jeu vidéo 2D multijoueur : architecture client-serveur sur sockets, synchronisation à faible latence entre deux joueurs, et un éditeur de niveaux sur mesure dont j'ai la charge.</p><span>Python · Pygame · Sockets</span></div></article><article class="card c1"><div class="img" style="background:#fff"><img src="assets/raspberry.jpg" alt="Raspberry Pi 5 dans son boîtier noir" loading="lazy" style="object-fit:contain"></div><div class="body"><small>Projet personnel</small><h3>Serveur distant</h3><p>Raspberry Pi 5 transformé en environnement de développement distant, accessible de façon sécurisée depuis un iPad grâce à Tailscale (VPN maillé) et Mosh (connexion SSH stable).</p><span>Linux · Tailscale · Mosh</span></div></article></div></section>
+<section class="sec" id="parcours"><h2>Parcours</h2><div class="hrow" tabindex="0" role="region" aria-label="Parcours"><article class="card c1"><div class="img logo" style="background:#fff"><img src="assets/epita-logo.png" alt="Logo de l'EPITA" loading="lazy" style="object-fit:contain"></div><div class="body"><small>2025 – aujourd'hui</small><h3>EPITA</h3><p>Cycle préparatoire intégré : informatique, mathématiques et programmation appliquée.</p><span>Lyon</span></div></article><article class="card c3"><div class="img logo" style="background:#0b6e4f"><img src="assets/chartreux-logo.png" alt="Logo des Chartreux" loading="lazy" style="object-fit:contain"></div><div class="body"><small>2018 – 2025</small><h3>Lycée des Chartreux</h3><p>Baccalauréat avec les spécialités mathématiques et informatique (NSI).</p><span>Lyon</span></div></article></div></section>
+<section class="sec last" id="experiences"><h2>Expériences</h2><div class="hrow" tabindex="0" role="region" aria-label="Expériences"><article class="card c1"><div class="img"><img src="assets/bouygues-jpg.jpg" alt="Boutique Bouygues Telecom" loading="lazy" style="object-fit:cover"></div><div class="body"><small>Mai – juillet 2026</small><h3>Conseiller de vente, Bouygues Telecom</h3><p>Écoute des besoins des clients, vulgarisation d'offres techniques, pédagogie et diplomatie.</p><span>Caluire-et-Cuire</span></div></article><article class="card c3"><div class="img"><img src="assets/abbaye-jpg.jpg" alt="Mur de clôture de l'abbaye Notre-Dame de Chiry-Ourscamp" loading="lazy" style="object-fit:cover"></div><div class="body"><small>Juillet 2025</small><h3>Projet d'année scoutisme</h3><p>Service rendu à une abbaye : défrichage et remise en état de murs et de parcelles.</p><span>Mouvement scout</span></div></article><article class="card c2"><div class="img"><img src="assets/ski-jpg.jpg" alt="Cours de ski pour enfants à La Toussuire" loading="lazy" style="object-fit:cover"></div><div class="body"><small>Décembre 2024 · Février 2025</small><h3>Aide-moniteur de ski</h3><p>Animation des enfants lors des cours collectifs, mise en place de l'espace de travail.</p><span>Cours collectifs</span></div></article><article class="card c3"><div class="img logo" style="background:#161616"><img src="assets/breakfirst-logo.png" alt="Logo de BreakFirst Games" loading="lazy" style="object-fit:contain"></div><div class="body"><small>Février 2021</small><h3>Stage chez Break First</h3><p>Stage d'observation : expérience de bêta-testeur.</p><span>Studio de jeu vidéo</span></div></article></div></section>
+<footer id="contact"><h2>Écrivez-moi.</h2>
+<div class="links"><a href="mailto:contact@aaugagneur.fr">contact@aaugagneur.fr</a><a href="cv/Arthur-Augagneur-CV-FR.pdf" download>CV (FR)</a><a href="cv/Arthur-Augagneur-CV-EN.pdf" download>CV (EN)</a><a href="https://github.com/matttrax" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/arthur-augagneur-231993380" rel="noopener">LinkedIn</a></div>
+<p class="credits">Photos :  <a href="https://commons.wikimedia.org/wiki/File:Boutique-bouygues-telecom-grassin-voiron.jpg">“Boutique-bouygues-telecom-grassin-voiron”</a> de Laurent Grassin, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>, Wikimedia Commons; <a href="https://commons.wikimedia.org/wiki/File:ESF_Piou_Piou_school,_La_Toussuire,_2023.jpg">“ESF Piou Piou school, La Toussuire, 2023”</a> de DimiTalen, <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>, Wikimedia Commons; <a href="https://commons.wikimedia.org/wiki/File:Chiry-Ourscamp_(60),_abbaye_Notre-Dame,_mur_de_cl%C3%B4ture_c%C3%B4t%C3%A9_ouest_1.jpg">“Chiry-Ourscamp (60), abbaye Notre-Dame, mur de clôture côté ouest 1”</a> de Pierre Poschadel, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, Wikimedia Commons. Logos : EPITA, Institution des Chartreux et BreakFirst Games, marques de leurs propriétaires.</p>
+<p>© 2026 Arthur Augagneur</p></footer>
+</body></html>
