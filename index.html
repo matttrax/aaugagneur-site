@@ -58,19 +58,22 @@ footer p{margin-top:40px;color:#a9a9a2;font-size:14px}footer .credits{margin-top
 .card.on .ci::before,.card.on .ci::after{opacity:1}
 .card.on .img img{transform:scale(1.12)}
 .card.on small{color:#7ee0b5}.card.on span{color:#b9b9b2}
-@media(any-hover:hover) and (any-pointer:fine){
-.card:hover .ci{color:var(--bg);transform:translateY(-10px)}
-.card:hover .ci::before,.card:hover .ci::after{opacity:1}
-.card:hover .img img{transform:scale(1.12)}
-.card:hover small{color:#7ee0b5}.card:hover span{color:#b9b9b2}}
-@media(min-width:900px) and (any-hover:hover) and (any-pointer:fine){
-.hrow{overflow:visible}.sec{overflow-x:clip}.ci::after{box-shadow:0 28px 56px rgba(0,0,0,.28)}
-.ci{will-change:transform}
-.card:hover .ci{transform:translateY(-8px) scale(1.14);z-index:2}
-.card:hover ~ .card .ci{transform:translateX(7.5%) scale(.94)}
-.card:has(~ .card:hover) .ci{transform:translateX(-7.5%) scale(.94)}
-.card:first-child:hover .ci{transform-origin:left center}.card:first-child:hover ~ .card .ci{transform:translateX(14%) scale(.94)}
-.card:last-child:hover .ci{transform-origin:right center}.card:has(~ .card:last-child:hover) .ci{transform:translateX(-14%) scale(.94)}}
+html:not(.touch) .card:hover .ci{color:var(--bg);transform:translateY(-10px)}
+html:not(.touch) .card:hover .ci::before,html:not(.touch) .card:hover .ci::after{opacity:1}
+html:not(.touch) .card:hover .img img{transform:scale(1.12)}
+html:not(.touch) .card:hover small{color:#7ee0b5}html:not(.touch) .card:hover span{color:#b9b9b2}
+@media(min-width:900px){
+html:not(.touch) .hrow{overflow:visible}html:not(.touch) .sec{overflow-x:clip}html:not(.touch) .ci::after{box-shadow:0 28px 56px rgba(0,0,0,.28)}
+html:not(.touch) .ci{will-change:transform}
+html:not(.touch) .card:hover .ci{transform:translateY(-8px) scale(1.14);z-index:2}
+html:not(.touch) .card:hover ~ .card .ci{transform:translateX(7.5%) scale(.94)}
+html:not(.touch) .card:has(~ .card:hover) .ci{transform:translateX(-7.5%) scale(.94)}
+html:not(.touch) .card:first-child:hover .ci{transform-origin:left center}html:not(.touch) .card:first-child:hover ~ .card .ci{transform:translateX(14%) scale(.94)}
+html:not(.touch) .card:last-child:hover .ci{transform-origin:right center}html:not(.touch) .card:has(~ .card:last-child:hover) .ci{transform:translateX(-14%) scale(.94)}
+html:not(.touch) .sec h2{margin-bottom:56px}
+html:not(.touch) .hrow:has(>.card:nth-child(2):last-child) .card:hover .ci{transform:translateY(-6px) scale(1.05)}
+html:not(.touch) .hrow:has(>.card:nth-child(2):last-child) .card:first-child:hover ~ .card .ci{transform:translateX(5%) scale(.97)}
+html:not(.touch) .hrow:has(>.card:nth-child(2):last-child) .card:has(~ .card:last-child:hover) .ci{transform:translateX(-5%) scale(.97)}}
 @media(prefers-reduced-motion:reduce){.card .ci{transform:none!important}.card:hover .img img{transform:none}}
 .card .img{height:clamp(170px,17vw,250px);display:grid;place-items:center;background:var(--acc);color:#fff}
 .card .img{position:relative;overflow:hidden;flex:none}.card .img.logo{background:#fff}.card .img.logo img{inset:22px;width:calc(100% - 44px);height:calc(100% - 44px)}.card .img img{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -82,6 +85,8 @@ footer p{margin-top:40px;color:#a9a9a2;font-size:14px}footer .credits{margin-top
 .card span{margin-top:auto;padding-top:12px;font:600 14px "Inter",system-ui,sans-serif;color:var(--dim)}
 @media(max-width:800px){.hrow{grid-auto-columns:84%}.card .img{height:190px}}
 @media(min-width:900px){html{zoom:.8}
+.about p{font-size:clamp(30px,2.4vw,46px);max-width:30ch}.about p+p{margin-top:22px}.langs{font-size:20px}.cvs .cta{font-size:18px;padding:14px 28px}
+.card p{font-size:21px}.card small,.card span{font-size:16px}
 .first{zoom:1.25;--m:clamp(18px,2.8vw,64px)}
 .first nav{font-size:clamp(13px,1vw,20px);padding:clamp(18px,1.8vw,36px) var(--m)}
 .first h1{font-size:min(11.6vw,24vh)}
@@ -112,8 +117,8 @@ footer p{margin-top:40px;color:#a9a9a2;font-size:14px}footer .credits{margin-top
 <p>© 2026 Arthur Augagneur</p></footer>
 <script>
 // Touch screens: highlight the card sitting at the centre of the screen instead of the last tapped one.
-(()=>{const mq=matchMedia('(any-hover:hover) and (any-pointer:fine)'),cards=[...document.querySelectorAll('.card')];let t=0;
-function upd(){t=0;document.documentElement.classList.toggle('touch',!mq.matches);if(mq.matches){cards.forEach(c=>c.classList.remove('on'));return}
+(()=>{const mq=matchMedia('(hover:none) and (pointer:coarse)'),cards=[...document.querySelectorAll('.card')];let t=0;
+function upd(){t=0;document.documentElement.classList.toggle('touch',mq.matches);if(!mq.matches){cards.forEach(c=>c.classList.remove('on'));return}
 const cx=innerWidth/2,cy=innerHeight/2;let best=null,bd=1e9;
 cards.forEach(c=>{const r=c.getBoundingClientRect();if(r.top<=cy&&r.bottom>=cy&&r.right>0&&r.left<innerWidth){const d=Math.abs(r.left+r.width/2-cx);if(d<bd){bd=d;best=c}}});
 cards.forEach(c=>c.classList.toggle('on',c===best))}
